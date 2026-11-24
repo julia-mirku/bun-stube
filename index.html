@@ -310,6 +310,21 @@ h2.mit-umlaut{padding-top:.36em}
 .tuete-knopf .zahl{position:absolute;top:-6px;right:-6px;min-width:26px;height:26px;padding:0 6px;border-radius:13px;background:var(--ketchup);color:#fff;border:2px solid var(--grill);font:800 14px/22px Onest,sans-serif;text-align:center}
 .tuete-knopf.neu{animation:korbErscheint .5s cubic-bezier(.3,1.6,.5,1) both}
 @keyframes korbErscheint{from{transform:scale(0)}to{transform:scale(1)}}
+/* Minus dort, wo man hinzufügt (Regel 124) */
+.gericht .minus{position:absolute;right:14px;bottom:82px;width:40px;height:40px;border-radius:50%;border:2px solid var(--grill);background:var(--weiss);color:var(--grill);font:800 22px/1 Onest,sans-serif;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:box-shadow .2s ease,background-color .2s ease}
+.gericht .minus:not([hidden]){animation:korbErscheint .3s cubic-bezier(.3,1.6,.5,1) both}
+.gericht .minus[hidden],.dazu-minus[hidden],.bau-raus[hidden]{display:none}
+@media (hover:hover){.gericht .minus:hover,.dazu-minus:hover{background:#EEF7DF;box-shadow:0 0 0 5px rgba(181,224,122,.45)}.bau-raus:hover{background:#EEF7DF}}
+.plus{position:relative}
+.plus[data-n]::after{content:attr(data-n);position:absolute;left:50%;bottom:calc(100% + 1px);transform:translateX(-50%);min-width:22px;height:20px;padding:0 5px;border-radius:10px;background:var(--ketchup);color:#fff;border:2px solid var(--grill);font:800 11px/16px Onest,sans-serif;text-align:center}
+.gericht.hat-minus .g-text{padding-right:40px}
+.gericht{min-height:136px}
+.dazu-gruppe{display:inline-flex;align-items:center;gap:6px}
+.dazu-minus{width:44px;height:44px;border-radius:50%;border:2px solid var(--grill);background:var(--weiss);font:800 20px/1 Onest,sans-serif;color:var(--grill);cursor:pointer;transition:background-color .2s ease,box-shadow .2s ease}
+.dazu-minus:not([hidden]){animation:korbErscheint .3s cubic-bezier(.3,1.6,.5,1) both}
+.dazu-btn[data-n]{background:#EEF7DF}
+.bau-raus{min-height:44px;padding:0 16px;border-radius:999px;border:2px dashed var(--grill);background:transparent;font:800 15px/1 Onest,sans-serif;color:var(--grill);cursor:pointer;transition:background-color .2s ease}
+
 .tuete-knopf.stups{animation:stups .45s cubic-bezier(.3,1.6,.5,1)}
 @keyframes stups{0%{transform:scale(1)}35%{transform:scale(1.18) rotate(-6deg)}100%{transform:scale(1)}}
 @media (hover:hover){.tuete-knopf:hover{background:var(--senf-hell);box-shadow:0 7px 0 var(--grill),0 0 0 6px rgba(255,211,107,.45)}}
@@ -667,12 +682,12 @@ h2.mit-umlaut{padding-top:.36em}
       <p>Eine Auswahl aus der Karte.</p>
     </div>
     <div class="karte">
-      <article class="gericht star rv"><div class="mini" data-schichten="deckel,salat,kaese,zwiebel,fleisch,boden" aria-hidden="true"></div><div class="g-text"><span class="nr">01</span><h3>Bergkäse-Burger</h3><p>Mit würzigem Bergkäse und Zwiebeln.</p><span class="marke-tag tag-liebling">Liebling</span><button class="plus" type="button" data-name="Bergkäse-Burger" data-schichten="deckel,salat,kaese,zwiebel,fleisch,boden" aria-label="Bergkäse-Burger in die Bestellung">+</button></div></article>
-      <article class="gericht rv"><div class="mini" data-schichten="deckel,salat,curry,fleisch,boden" aria-hidden="true"></div><div class="g-text"><span class="nr">02</span><h3>Chili-Burger</h3><p>Mit hausgemachter Chili-Mayo.</p><button class="plus" type="button" data-name="Chili-Burger" data-schichten="deckel,salat,curry,fleisch,boden" aria-label="Chili-Burger in die Bestellung">+</button></div></article>
-      <article class="gericht rv"><div class="mini" data-schichten="deckel,zwiebel,teriyaki,fleisch,boden" aria-hidden="true"></div><div class="g-text"><span class="nr">03</span><h3>BBQ-Burger</h3><p>Mit rauchiger BBQ-Sauce.</p><button class="plus" type="button" data-name="BBQ-Burger" data-schichten="deckel,zwiebel,teriyaki,fleisch,boden" aria-label="BBQ-Burger in die Bestellung">+</button></div></article>
-      <article class="gericht rv"><div class="mini" data-schichten="deckel,salat,blau,fleisch,boden" aria-hidden="true"></div><div class="g-text"><span class="nr">04</span><h3>Gorgonzola-Burger</h3><p>Mit cremigem Gorgonzola.</p><button class="plus" type="button" data-name="Gorgonzola-Burger" data-schichten="deckel,salat,blau,fleisch,boden" aria-label="Gorgonzola-Burger in die Bestellung">+</button></div></article>
-      <article class="gericht rv"><div class="mini" data-schichten="deckel,salat,falafel,tomate,boden" aria-hidden="true"></div><div class="g-text"><span class="nr">05</span><h3>Kichererbsen-Burger</h3><p>Mit knusprigen Kichererbsen-Bällchen.</p><span class="marke-tag tag-vegi">Vegi</span><button class="plus" type="button" data-name="Kichererbsen-Burger" data-schichten="deckel,salat,falafel,tomate,boden" aria-label="Kichererbsen-Burger in die Bestellung">+</button></div></article>
-      <article class="gericht rv"><div class="mini" data-schichten="deckel,tomate,zucchini,salat,boden" aria-hidden="true"></div><div class="g-text"><span class="nr">06</span><h3>Garten-Burger</h3><p>Mit gegrillter Zucchini und Tomate.</p><span class="marke-tag tag-vegi">Vegi</span><button class="plus" type="button" data-name="Garten-Burger" data-schichten="deckel,tomate,zucchini,salat,boden" aria-label="Garten-Burger in die Bestellung">+</button></div></article>
+      <article class="gericht star rv"><div class="mini" data-schichten="deckel,salat,kaese,zwiebel,fleisch,boden" aria-hidden="true"></div><div class="g-text"><span class="nr">01</span><h3>Bergkäse-Burger</h3><p>Mit würzigem Bergkäse und Zwiebeln.</p><span class="marke-tag tag-liebling">Liebling</span><button class="minus" type="button" hidden aria-label="Bergkäse-Burger: eins weniger">−</button><button class="plus" type="button" data-name="Bergkäse-Burger" data-schichten="deckel,salat,kaese,zwiebel,fleisch,boden" aria-label="Bergkäse-Burger in die Bestellung">+</button></div></article>
+      <article class="gericht rv"><div class="mini" data-schichten="deckel,salat,curry,fleisch,boden" aria-hidden="true"></div><div class="g-text"><span class="nr">02</span><h3>Chili-Burger</h3><p>Mit hausgemachter Chili-Mayo.</p><button class="minus" type="button" hidden aria-label="Chili-Burger: eins weniger">−</button><button class="plus" type="button" data-name="Chili-Burger" data-schichten="deckel,salat,curry,fleisch,boden" aria-label="Chili-Burger in die Bestellung">+</button></div></article>
+      <article class="gericht rv"><div class="mini" data-schichten="deckel,zwiebel,teriyaki,fleisch,boden" aria-hidden="true"></div><div class="g-text"><span class="nr">03</span><h3>BBQ-Burger</h3><p>Mit rauchiger BBQ-Sauce.</p><button class="minus" type="button" hidden aria-label="BBQ-Burger: eins weniger">−</button><button class="plus" type="button" data-name="BBQ-Burger" data-schichten="deckel,zwiebel,teriyaki,fleisch,boden" aria-label="BBQ-Burger in die Bestellung">+</button></div></article>
+      <article class="gericht rv"><div class="mini" data-schichten="deckel,salat,blau,fleisch,boden" aria-hidden="true"></div><div class="g-text"><span class="nr">04</span><h3>Gorgonzola-Burger</h3><p>Mit cremigem Gorgonzola.</p><button class="minus" type="button" hidden aria-label="Gorgonzola-Burger: eins weniger">−</button><button class="plus" type="button" data-name="Gorgonzola-Burger" data-schichten="deckel,salat,blau,fleisch,boden" aria-label="Gorgonzola-Burger in die Bestellung">+</button></div></article>
+      <article class="gericht rv"><div class="mini" data-schichten="deckel,salat,falafel,tomate,boden" aria-hidden="true"></div><div class="g-text"><span class="nr">05</span><h3>Kichererbsen-Burger</h3><p>Mit knusprigen Kichererbsen-Bällchen.</p><span class="marke-tag tag-vegi">Vegi</span><button class="minus" type="button" hidden aria-label="Kichererbsen-Burger: eins weniger">−</button><button class="plus" type="button" data-name="Kichererbsen-Burger" data-schichten="deckel,salat,falafel,tomate,boden" aria-label="Kichererbsen-Burger in die Bestellung">+</button></div></article>
+      <article class="gericht rv"><div class="mini" data-schichten="deckel,tomate,zucchini,salat,boden" aria-hidden="true"></div><div class="g-text"><span class="nr">06</span><h3>Garten-Burger</h3><p>Mit gegrillter Zucchini und Tomate.</p><span class="marke-tag tag-vegi">Vegi</span><button class="minus" type="button" hidden aria-label="Garten-Burger: eins weniger">−</button><button class="plus" type="button" data-name="Garten-Burger" data-schichten="deckel,tomate,zucchini,salat,boden" aria-label="Garten-Burger in die Bestellung">+</button></div></article>
     </div>
     <p class="karte-fuss rv">Aktuelle Preise am Telefon: <a href="tel:+41710000000"><b>071 000 00 00</b></a></p>
   </div>
@@ -695,6 +710,7 @@ h2.mit-umlaut{padding-top:.36em}
       </div>
       <div class="bau-knoepfe">
         <button class="btn btn-call" type="button" id="bauRein"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11h18l-1.6 16.2a2 2 0 0 1-2 1.8H10.6a2 2 0 0 1-2-1.8z" fill="currentColor"/><path d="M11.5 13V9.5a4.5 4.5 0 0 1 9 0V13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>In die Bestellung</button>
+        <button class="bau-raus" type="button" id="bauRaus" hidden>− Wieder raus</button>
         <a class="btn btn-ghost" href="tel:+41710000000">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>
           071 000 00 00
@@ -724,9 +740,9 @@ h2.mit-umlaut{padding-top:.36em}
       <h2 id="pommesTitel">Knusprige Pommes</h2>
       <p>Goldgelb, aussen knusprig, innen weich – frisch aus der Fritteuse. Dazu ein Burger, und der Abend ist gerettet.</p>
       <div class="dazu">
-        <button class="dazu-btn" type="button" data-art="pommes">+ Pommes</button>
-        <button class="dazu-btn" type="button" data-art="ketchup">+ Ketchup</button>
-        <button class="dazu-btn" type="button" data-art="mayo">+ Mayo</button>
+        <span class="dazu-gruppe"><button class="dazu-btn" type="button" data-art="pommes">+ Pommes</button><button class="dazu-minus" type="button" hidden data-art="pommes" aria-label="Pommes: eins weniger">−</button></span>
+        <span class="dazu-gruppe"><button class="dazu-btn" type="button" data-art="ketchup">+ Ketchup</button><button class="dazu-minus" type="button" hidden data-art="ketchup" aria-label="Ketchup: eins weniger">−</button></span>
+        <span class="dazu-gruppe"><button class="dazu-btn" type="button" data-art="mayo">+ Mayo</button><button class="dazu-minus" type="button" hidden data-art="mayo" aria-label="Mayo: eins weniger">−</button></span>
       </div>
     </div>
     <div class="dips-box"><p class="dip-tipp" aria-hidden="true"><svg viewBox="0 0 40 30"><path d="M4 4q18 2 26 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M24 22l6 3 1-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Zieh die Pommes in eine Sauce</p>
@@ -1312,8 +1328,25 @@ function korbZeigen(fokus){
     li.appendChild(m);korbListe.appendChild(li);
   });
   document.getElementById("korbLeer").hidden=korb.length>0;
-  pruefen();
+  pruefen();abgleichen();
   if(fokus){var z=fokus==="zu"?document.getElementById("korbZu"):korbListe.querySelector('[data-f="'+fokus+'"]');if(z)z.focus();}
+}
+function schluessel(name,sch){return name+"|"+(sch||[]).join(",");}
+function menge(key){var d=korb.filter(function(x){return x.key===key;})[0];return d?d.n:0;}
+function eins_weniger(key){for(var i=0;i<korb.length;i++){if(korb[i].key===key){korb[i].n--;if(korb[i].n<1)korb.splice(i,1);break;}}korbZeigen();if(!korb.length)korbKnopf.hidden=true;else stupsen();}
+function bauSchichten(){var mitte=[].slice.call(bb.children).slice(1,-1).filter(function(c){return !c.dataset.weg;});return ["deckel"].concat(mitte.map(function(c){return c.dataset.art;})).concat(["boden"]);}
+function abgleichen(){
+  [].forEach.call(document.querySelectorAll(".gericht .plus"),function(b){
+    var n=menge(schluessel(b.dataset.name,b.dataset.schichten.split(","))),mi=b.parentNode.querySelector(".minus"),g=b.closest(".gericht");
+    if(n>0)b.setAttribute("data-n",n);else b.removeAttribute("data-n");
+    if(mi)mi.hidden=n<1;if(g)g.classList.toggle("hat-minus",n>0);
+  });
+  [].forEach.call(document.querySelectorAll(".dazu-btn"),function(b){
+    var n=menge(schluessel(DAZU[b.dataset.art])),mi=b.parentNode.querySelector(".dazu-minus");
+    if(n>0){b.setAttribute("data-n",n);b.textContent="+ "+DAZU[b.dataset.art]+" · "+n;}else{b.removeAttribute("data-n");b.textContent="+ "+DAZU[b.dataset.art];}
+    if(mi)mi.hidden=n<1;
+  });
+  var br=document.getElementById("bauRaus");if(br&&typeof bb!=="undefined"){br.hidden=menge(schluessel("Dein Burger",bauSchichten()))<1;}
 }
 function rein(it){
   var key=it.name+"|"+(it.schichten||[]).join(",");
@@ -1355,6 +1388,14 @@ document.getElementById("bauRein").addEventListener("click",function(){
     fliegen(b,d,function(){rein({name:DAZU[art],art:art});});
   });
 });
+[].forEach.call(document.querySelectorAll(".gericht .minus"),function(mi){
+  mi.addEventListener("click",function(e){e.stopPropagation();var b=mi.parentNode.querySelector(".plus");eins_weniger(schluessel(b.dataset.name,b.dataset.schichten.split(",")));if(mi.hidden)b.focus();});
+});
+[].forEach.call(document.querySelectorAll(".dazu-minus"),function(mi){
+  mi.addEventListener("click",function(){eins_weniger(schluessel(DAZU[mi.dataset.art]));if(mi.hidden)mi.parentNode.querySelector(".dazu-btn").focus();});
+});
+(function(){var br=document.getElementById("bauRaus");if(!br)return;br.addEventListener("click",function(){eins_weniger(schluessel("Dein Burger",bauSchichten()));if(br.hidden)document.getElementById("bauRein").focus();});
+  new MutationObserver(abgleichen).observe(bb,{childList:true,attributes:true,attributeFilter:["data-weg"],subtree:true});})();
 /* Abholzeiten */
 function zeiten(){
   var sel=document.getElementById("fAbhol"),alt=sel.value;sel.innerHTML="";
