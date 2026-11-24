@@ -313,11 +313,11 @@ h2.mit-umlaut{padding-top:.36em}
 /* Minus dort, wo man hinzufügt (Regel 124) */
 .gericht .minus{position:absolute;right:14px;bottom:82px;width:40px;height:40px;border-radius:50%;border:2px solid var(--grill);background:var(--weiss);color:var(--grill);font:800 22px/1 Onest,sans-serif;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:box-shadow .2s ease,background-color .2s ease}
 .gericht .minus:not([hidden]){animation:korbErscheint .3s cubic-bezier(.3,1.6,.5,1) both}
-.gericht .minus[hidden],.dazu-minus[hidden],.bau-raus[hidden]{display:none}
+.gericht .minus[hidden]{display:none}
 @media (hover:hover){.gericht .minus:hover,.dazu-minus:hover{background:#EEF7DF;box-shadow:0 0 0 5px rgba(181,224,122,.45)}.bau-raus:hover{background:#EEF7DF}}
 .plus{position:relative}
 .plus[data-n]::after{content:attr(data-n);position:absolute;left:50%;bottom:calc(100% + 1px);transform:translateX(-50%);min-width:22px;height:20px;padding:0 5px;border-radius:10px;background:var(--ketchup);color:#fff;border:2px solid var(--grill);font:800 11px/16px Onest,sans-serif;text-align:center}
-.gericht.hat-minus .g-text{padding-right:40px}
+.gericht .g-text{padding-right:40px}
 .gericht{min-height:136px}
 .dazu-gruppe{display:inline-flex;align-items:center;gap:6px}
 .dazu-minus{width:44px;height:44px;border-radius:50%;border:2px solid var(--grill);background:var(--weiss);font:800 20px/1 Onest,sans-serif;color:var(--grill);cursor:pointer;transition:background-color .2s ease,box-shadow .2s ease}
@@ -605,6 +605,13 @@ h2.mit-umlaut{padding-top:.36em}
   .rv{opacity:1;transform:none}
   .schicht{transition:none}
 }
+
+/* Regel 130: «+» und «−» nebeneinander, nichts wird breiter oder rückt (Platz für «−» ist immer da) */
+.dazu-minus[hidden],.bau-raus[hidden]{display:inline-flex!important;opacity:.22;pointer-events:none;animation:none;box-shadow:none}
+.dazu-minus{display:inline-flex;align-items:center;justify-content:center}
+.bau-raus{display:inline-flex;align-items:center}
+.dazu-btn{position:relative}
+.dazu-btn[data-n]::after{content:attr(data-n);position:absolute;right:-6px;top:-9px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--ketchup);color:#fff;border:2px solid var(--grill);font:800 11px/16px Onest,sans-serif;text-align:center}
 </style>
 </head>
 <body>
@@ -1343,7 +1350,7 @@ function abgleichen(){
   });
   [].forEach.call(document.querySelectorAll(".dazu-btn"),function(b){
     var n=menge(schluessel(DAZU[b.dataset.art])),mi=b.parentNode.querySelector(".dazu-minus");
-    if(n>0){b.setAttribute("data-n",n);b.textContent="+ "+DAZU[b.dataset.art]+" · "+n;}else{b.removeAttribute("data-n");b.textContent="+ "+DAZU[b.dataset.art];}
+    if(n>0)b.setAttribute("data-n",n);else b.removeAttribute("data-n");
     if(mi)mi.hidden=n<1;
   });
   var br=document.getElementById("bauRaus");if(br&&typeof bb!=="undefined"){br.hidden=menge(schluessel("Dein Burger",bauSchichten()))<1;}
